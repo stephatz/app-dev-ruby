@@ -25,6 +25,7 @@ class InterviewsController < ApplicationController
     the_interview.responsibilities = params.fetch("query_responsibilities")
     the_interview.date = params.fetch("query_date")
     the_interview.employer = params.fetch("query_employer")
+    the_interview.interview_type = params.fetch("query_type")
 
     if the_interview.valid?
       the_interview.save
@@ -43,6 +44,7 @@ class InterviewsController < ApplicationController
     the_interview.responsibilities = params.fetch("query_responsibilities")
     the_interview.date = params.fetch("query_date")
     the_interview.employer = params.fetch("query_employer")
+    the_interview.type = params.fetch("query_type")
 
     if the_interview.valid?
       the_interview.save

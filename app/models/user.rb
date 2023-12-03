@@ -18,6 +18,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  validates(:email, uniqueness: true)
   has_many  :interviews, class_name: "Interview", foreign_key: "user_id", dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

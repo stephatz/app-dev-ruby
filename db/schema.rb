@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_03_012929) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_03_212708) do
   create_table "interviews", force: :cascade do |t|
     t.string "job_title"
     t.integer "user_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_012929) do
     t.string "employer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "interview_type"
   end
 
   create_table "questions", force: :cascade do |t|

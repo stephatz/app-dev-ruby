@@ -89,12 +89,24 @@
 
 
       <div class="mb-3 form-group">
-        <label for="responsibilities_box" class="col-sm-3 col-form-label">
+        <label for="responsibilities_box" class="form-label mt-4">
           Responsibilities
         </label>
 
-        <textarea type="text" class="form-label" id="responsibilities_box" name="query_responsibilities"
+        <textarea type="text" class="form-control" id="responsibilities_box" name="query_responsibilities"
           rows="3"> </textarea>
+      </div>
+
+      <div class="mb-3 form-group">
+      <label for="type_box" class="col-sm-3 col-form-label">Interview Type</label>
+      <select class="form-select" id="type_box" name="query_type">
+        <option>Informational</option>
+        <option>Screening or Telephone </option>
+        <option>Small Group or Committee</option>
+        <option>Behavioral-Based</option>
+        <option>Task Oriented</option>
+        <option>Other</option>
+      </select>
       </div>
 
       <div class="mb-3 form-group">
@@ -148,7 +160,7 @@
         </td>
 
         <td>
-          <%= an_interview.type %>
+          <%= an_interview.interview_type %>
         </td>
 
         <td>
