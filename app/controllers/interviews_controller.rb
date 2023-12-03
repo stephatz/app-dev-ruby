@@ -2,6 +2,7 @@ class InterviewsController < ApplicationController
   def index
     matching_interviews = Interview.all
 
+    
     @list_of_interviews = matching_interviews.order({ :created_at => :desc })
 
     render({ :template => "interviews/index" })
@@ -20,7 +21,7 @@ class InterviewsController < ApplicationController
   def create
     the_interview = Interview.new
     the_interview.job_title = params.fetch("query_job_title")
-    the_interview.user_id = params.fetch("query_user_id")
+    the_interview.user_id = current_user.id
     the_interview.responsibilities = params.fetch("query_responsibilities")
     the_interview.date = params.fetch("query_date")
     the_interview.employer = params.fetch("query_employer")

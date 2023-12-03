@@ -1,128 +1,146 @@
-<div>
+<br>
+<div class="d-flex container-fluid justify-content-between">
   <div>
-    <h1>
-      List of all interviews
-    </h1>
+    <h3>
+      <strong>
+      My interviews
+      </strong>
+    </h3>
+  </div>
+  <div>
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add interview</button>
   </div>
 </div>
 
 <hr>
 
-<div>
-  <div>
-    <h2>
+<!--<div class="container-fluid">
+  <div class="d-flex flex-column">
+    <h4>
       Add a new interview
-    </h2>
+    </h4>
 
     <form action="/insert_interview" method="post">
-      <div>
-        <label for="job_title_box">
+      <div class="mb-3">
+        <label for="job_title_box" class="col-sm-2 col-form-label">
           Job title
         </label>
 
         <input type="text" id="job_title_box" name="query_job_title">
       </div>
 
-      <div>
-        <label for="user_id_box">
-          User
-        </label>
-
-        <input type="text" id="user_id_box" name="query_user_id">
-      </div>
-
-      <div>
-        <label for="responsibilities_box">
-          Responsibilities
-        </label>
-
-        <input type="text" id="responsibilities_box" name="query_responsibilities">
-      </div>
-
-      <div>
-        <label for="date_box">
-          Date
-        </label>
-
-        <input type="date" id="date_box" name="query_date">
-      </div>
-
-      <div>
-        <label for="employer_box">
+      <div class="mb-3">
+        <label for="employer_box" class="col-sm-2 col-form-label">
           Employer
         </label>
 
         <input type="text" id="employer_box" name="query_employer">
       </div>
 
-      <button>
+
+      <div class="mb-3">
+        <label for="responsibilities_box" class="col-sm-2 col-form-label">
+          Responsibilities
+        </label>
+
+        <textarea type="text" id="responsibilities_box" name="query_responsibilities"> </textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="date_box" class="col-sm-2 col-form-label">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date">
+      </div>
+
+      <button class="btn btn-primary">
         Create interview
       </button>
     </form>
   </div>
+</div>-->
+
+<div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add a new interview</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+    <form action="/insert_interview" method="post">
+      <div class="mb-3 form-group">
+        <label for="job_title_box" class="col-sm-3 col-form-label">
+          Job title
+        </label>
+
+        <input type="text" id="job_title_box" name="query_job_title">
+      </div>
+
+      <div class="mb-3 form-group">
+        <label for="employer_box" class="col-sm-3 col-form-label">
+          Employer
+        </label>
+
+        <input type="text" id="employer_box" name="query_employer">
+      </div>
+
+
+      <div class="mb-3 form-group">
+        <label for="responsibilities_box" class="col-sm-3 col-form-label">
+          Responsibilities
+        </label>
+
+        <textarea type="text" class="form-label" id="responsibilities_box" name="query_responsibilities"
+          rows="3"> </textarea>
+      </div>
+
+      <div class="mb-3 form-group">
+        <label for="date_box" class="col-sm-3 col-form-label">
+          Interview Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date">
+      </div>
+
+      <button class="btn btn-primary">
+        Create interview
+      </button>
+    </form>
+      </div>
+    </div>
+  </div>
 </div>
 
-<hr>
 <div>
-  <div>
-    <table border="1">
-      <tr>
-        <th>
-          ID
-        </th>
+  <div class="container-fluid">
+    <table class="table table-hover">
+      <tr class="table-primary">
 
-        <th>
+        <th scope="col">
           Job title
         </th>
 
-        <th>
-          User
-        </th>
-
-        <th>
-          Responsibilities
-        </th>
-
-        <th>
-          Date
-        </th>
-
-        <th>
+        <th scope="col">
           Employer
         </th>
 
-        <th>
-          Created at
+        <th scope="col">
+          Type of interview
         </th>
 
-        <th>
-          Updated at
-        </th>
-
-        <th>
+        <th scope="col">
         </th>
       </tr>
 
       <% @list_of_interviews.each do |an_interview| %>
       <tr>
         <td>
-          <%= an_interview.id %>
-        </td>
-
-        <td>
+          <a href="/interviews/<%= an_interview.id %>">
           <%= an_interview.job_title %>
-        </td>
-
-        <td>
-          <%= an_interview.user_id %>
-        </td>
-
-        <td>
-          <%= an_interview.responsibilities %>
-        </td>
-
-        <td>
-          <%= an_interview.date %>
+          </a>
         </td>
 
         <td>
@@ -130,16 +148,11 @@
         </td>
 
         <td>
-          <%= time_ago_in_words(an_interview.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(an_interview.updated_at) %> ago
+          <%= an_interview.type %>
         </td>
 
         <td>
-          <a href="/interviews/<%= an_interview.id %>">
-            Show details
-          </a>
+
         </td>
       </tr>
       <% end %>
