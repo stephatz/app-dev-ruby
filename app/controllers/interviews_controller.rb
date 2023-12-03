@@ -15,6 +15,8 @@ class InterviewsController < ApplicationController
 
     @the_interview = matching_interviews.at(0)
 
+    @the_questions = @the_interview.questions.all
+
     render({ :template => "interviews/show" })
   end
 
@@ -40,11 +42,10 @@ class InterviewsController < ApplicationController
     the_interview = Interview.where({ :id => the_id }).at(0)
 
     the_interview.job_title = params.fetch("query_job_title")
-    the_interview.user_id = params.fetch("query_user_id")
     the_interview.responsibilities = params.fetch("query_responsibilities")
     the_interview.date = params.fetch("query_date")
     the_interview.employer = params.fetch("query_employer")
-    the_interview.type = params.fetch("query_type")
+    the_interview.interview_type = params.fetch("query_type")
 
     if the_interview.valid?
       the_interview.save
