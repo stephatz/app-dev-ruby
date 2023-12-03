@@ -1,0 +1,131 @@
+<div>
+  <div>
+    <h1>
+      Interview #<%= @the_interview.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/interviews">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_interview/<%= @the_interview.id %>">
+          Delete interview
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Job title
+      </dt>
+      <dd>
+        <%= @the_interview.job_title %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_interview.user_id %>
+      </dd>
+
+      <dt>
+        Responsibilities
+      </dt>
+      <dd>
+        <%= @the_interview.responsibilities %>
+      </dd>
+
+      <dt>
+        Date
+      </dt>
+      <dd>
+        <%= @the_interview.date %>
+      </dd>
+
+      <dt>
+        Employer
+      </dt>
+      <dd>
+        <%= @the_interview.employer %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_interview.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit interview
+    </h2>
+
+    <form action="/modify_interview/<%= @the_interview.id %>"  method="post" >
+      <div>
+        <label for="job_title_box">
+          Job title
+        </label>
+
+        <input type="text" id="job_title_box" name="query_job_title" value="<%= @the_interview.job_title %>">
+      </div>
+
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_interview.user_id %>">
+      </div>
+
+      <div>
+        <label for="responsibilities_box">
+          Responsibilities
+        </label>
+
+        <input type="text" id="responsibilities_box" name="query_responsibilities" value="<%= @the_interview.responsibilities %>">
+      </div>
+
+      <div>
+        <label for="date_box">
+          Date
+        </label>
+
+        <input type="date" id="date_box" name="query_date" value="<%= @the_interview.date %>">
+      </div>
+
+      <div>
+        <label for="employer_box">
+          Employer
+        </label>
+
+        <input type="text" id="employer_box" name="query_employer" value="<%= @the_interview.employer %>">
+      </div>
+
+      <button>
+        Update interview
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
