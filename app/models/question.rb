@@ -11,4 +11,7 @@
 #
 class Question < ApplicationRecord
   belongs_to :interview, required: true, class_name: "Interview", foreign_key: "interview_id"
+
+  validates(:question, presence: true)
+  validates(:interview_id, presence: true)
 end

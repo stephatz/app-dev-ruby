@@ -11,7 +11,7 @@
 
       <div>
           <a href="/delete_interview/<%= @the_interview.id %>">
-            <button type="button" class="btn btn-secondary">Delete interview</button>
+            <button type="button" class="btn btn-danger">Delete interview</button>
           </a>
       </div>
     </div>
@@ -118,39 +118,91 @@
 <hr>
 
 <div class="container-fluid">
-  <div class="mb-3">
-      <h5>
-        <strong>
-          Interview Questions
-        </strong>
-      </h5>
+
+  <div class="d-flex justify-content-between">
+    <div class="mb-3">
+        <h5>
+          <strong>
+            Interview Questions
+          </strong>
+        </h5>
+    </div>
+
+    <div>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createqModal">Add</button>
+    </div>
   </div>
 
   <table class="table table-hover mb-3">
       <tr class="table-primary">
 
         <th scope="col">
+          ID
+        </th>
+        <th scope="col">
           Questions
         </th>
 
-        <th scope="col">
-        </th>
       </tr>
 
       <% @the_questions.each do |a_question| %>
       <tr>
-        <td>
-          <%= a_question.question %>
-        </td>
 
         <td>
           <a href="/questions/<%= a_question.id %>">
-            See more
+            <%= a_question.id%>
           </a>
+        </td>
+
+        <td>
+          <%= a_question.question %>
         </td>
 
       </tr>
       <% end %>
     </table>
 
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="createqModal" tabindex="-1" aria-labelledby="newquestion" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+      <form action="/insert_question" method="post">
+        <div class="mb-3 form-group">
+          <label for="question_box" class="col-sm-3 col-form-label">
+            Question
+          </label>
+
+          <textarea type="text" class="form-control" id="question_box" name="query_question"
+          rows="3"> </textarea>
+        </div>
+
+        <div class="mb-3 form-group">
+          <label for="answer_box" class="col-sm-3 col-form-label">
+            Answer
+          </label>
+
+          <textarea type="text" class="form-control" id="answer_box" name="query_answer"
+          rows="3"> </textarea>
+        </div>
+
+        <div>
+          <input type="hidden" name="query_interview_id" value="<%=@the_interview.id%>">
+        </div>
+
+
+        <button class="btn btn-primary">
+          Create question
+        </button>
+      </form>
+
+      </div>
+    </div>
+  </div>
 </div>

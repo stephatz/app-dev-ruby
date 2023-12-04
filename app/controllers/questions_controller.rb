@@ -25,9 +25,9 @@ class QuestionsController < ApplicationController
 
     if the_question.valid?
       the_question.save
-      redirect_to("/questions", { :notice => "Question created successfully." })
+      redirect_to("/interviews/#{the_question.interview_id}", { :notice => "Question created successfully." })
     else
-      redirect_to("/questions", { :alert => the_question.errors.full_messages.to_sentence })
+      redirect_to("/interviews/#{the_question.interview_id}", { :alert => the_question.errors.full_messages.to_sentence })
     end
   end
 
