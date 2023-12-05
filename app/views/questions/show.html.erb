@@ -1,29 +1,47 @@
-<div>
+<br>
+<div class="container-fluid">
   <div>
-    <h1>
-      Question #<%= @the_question.id %> details
-    </h1>
 
     <div>
       <div>
-        <a href="/questions">
+        <a href="/interviews/<%= @the_question.interview_id%>">
           Go back
         </a>
       </div>
 
-      <div>
-        <a href="/delete_question/<%= @the_question.id %>">
-          Delete question
-        </a>
+       <br>
+
+       <div class="d-flex justify-content-between">
+        <div>
+           <h3>
+          <strong>
+          Question #<%= @the_question.id %> - <%=@the_question.interview.job_title%>
+          </strong>
+          </h3>
+        </div>
+
+
+          <div>
+          
+            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteqModal">Delete question</button>
+
+          </div>
       </div>
     </div>
 
+
+     <div>
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#updateqModal">Edit</button>
+    </div>    
+
+    <br>
     <dl>
       <dt>
-        Question
       </dt>
       <dd>
+        <em>
         <%= @the_question.question %>
+        </em>
       </dd>
 
       <dt>
@@ -32,70 +50,82 @@
       <dd>
         <%= @the_question.answer %>
       </dd>
-
+<!--
       <dt>
-        Interview
+        Interview Type
       </dt>
       <dd>
-        <%= @the_question.interview_id %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_question.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_question.updated_at) %> ago
-      </dd>
+        <%#= @the_question.interview.interview_type %>-->
+<!--      </dd>
+-->
+  
     </dl>
   </div>
 </div>
 
-<hr>
 
-
-<div>
-  <div>
-    <h2>
-      Edit question
-    </h2>
+<div class="modal fade bd-example-modal-lg" id="updateqModal" tabindex="-1" aria-labelledby="editquestion" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit question</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 
     <form action="/modify_question/<%= @the_question.id %>"  method="post" >
-      <div>
-        <label for="question_box">
+      <div class="mb-3 form-group">
+        <label for="question_box" class="col-sm-3 col-form-label">
           Question
         </label>
 
-        <input type="text" id="question_box" name="query_question" value="<%= @the_question.question %>">
+        <textarea type="text" class="form-control" id="question_box" name="query_question"
+            rows="3">
+                 <%= @the_question.question %>
+        </textarea>
       </div>
 
-      <div>
-        <label for="answer_box">
+      <div class="mb-3 form-group">
+        <label for="answer_box" class="col-sm-3 col-form-label">
           Answer
         </label>
 
-        <input type="text" id="answer_box" name="query_answer" value="<%= @the_question.answer %>">
+        <textarea type="text" class="form-control" id="answer_box" name="query_answer"
+            rows="3">
+                 <%= @the_question.answer %>
+        </textarea>
       </div>
 
-      <div>
-        <label for="interview_id_box">
-          Interview
-        </label>
-
-        <input type="text" id="interview_id_box" name="query_interview_id" value="<%= @the_question.interview_id %>">
-      </div>
-
-      <button>
+      <button class="btn btn-primary">
         Update question
       </button>
     </form>
+      </div>
+    </div>
   </div>
 </div>
 
-<hr>
+<div class="modal fade" id="deleteqModal" tabindex="-1" role="dialog" aria-labelledby="deletequestion" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete the question?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        The question and its answer will be permanently deleted.
+      </div>
+      <div class="modal-footer">
+        <a href="/questions/<%=@the_question.id%>">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        </a>
+          
+         <a href="/delete_question/<%= @the_question.id %>">
+        <button type="button" class="btn btn-danger">Delete</button>
+        <a>
+      </div>
+    </div>
+  </div>
+</div>

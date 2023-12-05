@@ -37,7 +37,6 @@ class QuestionsController < ApplicationController
 
     the_question.question = params.fetch("query_question")
     the_question.answer = params.fetch("query_answer")
-    the_question.interview_id = params.fetch("query_interview_id")
 
     if the_question.valid?
       the_question.save
