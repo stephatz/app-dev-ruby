@@ -22,18 +22,15 @@ class InterviewsController < ApplicationController
 
   def create
     the_interview = Interview.new
-    the_interview.job_title = params.fetch("query_job_title")
-    the_interview.user_id = current_user.id
-    the_interview.responsibilities = params.fetch("query_responsibilities")
+    the_interview.job_id = params.fetch("query_job_id")
     the_interview.date = params.fetch("query_date")
-    the_interview.employer = params.fetch("query_employer")
     the_interview.interview_type = params.fetch("query_type")
 
     if the_interview.valid?
       the_interview.save
-      redirect_to("/interviews", { :notice => "Interview created successfully." })
+      redirect_to("/jobs/#{the_interview.job.id}", { :notice => "Interview created successfully." })
     else
-      redirect_to("/interviews", { :alert => the_interview.errors.full_messages.to_sentence })
+      redirect_to("/jobs/#{the_interview.job.id}", { :alert => the_interview.errors.full_messages.to_sentence })
     end
   end
 
@@ -41,10 +38,7 @@ class InterviewsController < ApplicationController
     the_id = params.fetch("path_id")
     the_interview = Interview.where({ :id => the_id }).at(0)
 
-    the_interview.job_title = params.fetch("query_job_title")
-    the_interview.responsibilities = params.fetch("query_responsibilities")
     the_interview.date = params.fetch("query_date")
-    the_interview.employer = params.fetch("query_employer")
     the_interview.interview_type = params.fetch("query_type")
 
     if the_interview.valid?
@@ -61,6 +55,6 @@ class InterviewsController < ApplicationController
 
     the_interview.destroy
 
-    redirect_to("/interviews", { :notice => "Interview deleted successfully."} )
+    redirect_to("/jobs/#{the_interview.job.id}", { :notice => "Interview deleted successfully."} )
   end
 end

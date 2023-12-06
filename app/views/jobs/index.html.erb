@@ -3,27 +3,27 @@
   <div>
     <h3>
       <strong>
-      My interviews
+      My jobs
       </strong>
     </h3>
   </div>
-<!--  <div>
-    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createintModal">Add interview</button>
-  </div>-->
+  <div>
+    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createjobModal">Add job</button>
+  </div>
 </div>
 
 <hr>
 
-<!--<div class="modal fade bd-example-modal-lg" id="createintModal" tabindex="-1" aria-labelledby="createinterview" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="createjobModal" tabindex="-1" aria-labelledby="createjob" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add a new interview</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add a new job</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
-    <form action="/insert_interview" method="post">
+    <form action="/insert_job" method="post">
       <div class="mb-3 form-group">
         <label for="job_title_box" class="col-sm-3 col-form-label">
           Job title
@@ -50,34 +50,14 @@
           rows="3"> </textarea>
       </div>
 
-      <div class="mb-3 form-group">
-      <label for="type_box" class="col-sm-3 col-form-label">Interview Type</label>
-      <select class="form-select" id="type_box" name="query_type">
-        <option>Informational</option>
-        <option>Screening or Telephone </option>
-        <option>Small Group or Committee</option>
-        <option>Behavioral-Based</option>
-        <option>Task Oriented</option>
-        <option>Other</option>
-      </select>
-      </div>
-
-      <div class="mb-3 form-group">
-        <label for="date_box" class="col-sm-3 col-form-label">
-          Interview Date
-        </label>
-
-        <input type="date" id="date_box" name="query_date">
-      </div>
-
       <button class="btn btn-primary">
-        Create interview
+        Create job
       </button>
     </form>
       </div>
     </div>
   </div>
-</div>-->
+</div>
 
 <div>
   <div class="container-fluid">
@@ -93,27 +73,19 @@
         </th>
 
         <th scope="col">
-          Type of interview
-        </th>
-
-        <th scope="col">
         </th>
       </tr>
 
-      <% @list_of_interviews.each do |an_interview| %>
+      <% @list_of_jobs.each do |a_job| %>
       <tr>
         <td>
-          <a href="/jobs/<%= an_interview.job.id %>">
-          <%= an_interview.job.job_title %>
+          <a href="/jobs/<%= a_job.id %>">
+          <%= a_job.job_title %>
           </a>
         </td>
 
         <td>
-          <%= an_interview.job.employer %>
-        </td>
-
-        <td>
-          <%= an_interview.interview_type %>
+          <%= a_job.employer %>
         </td>
 
         <td>

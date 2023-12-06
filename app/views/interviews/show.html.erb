@@ -1,10 +1,16 @@
 <br>
 <div class="container-fluid">
+    <div>
+      <a href="/jobs/<%=@the_interview.job.id%>">
+        Go back to job
+      </a>
+    </div>
+    <br>
     <div class="d-flex justify-content-between">
       <div>
         <h3>
           <strong>
-          <%= @the_interview.job_title %>
+           <%= @the_interview.interview_type %> Interview - <%= @the_interview.job.job_title %>
           </strong>
         </h3>
       </div>
@@ -21,18 +27,6 @@
 
     <br>
     <dl>
-      <dt>
-        Employer
-      </dt>
-      <dd>
-        <%= @the_interview.employer %>
-      </dd>
-      <dt>
-        Responsibilities
-      </dt>
-      <dd>
-        <%= @the_interview.responsibilities %>
-      </dd>
 
       <dt>
         Date
@@ -57,12 +51,12 @@
       <div class="modal-body">
 
       <form action="/modify_interview/<%= @the_interview.id %>" method="post">
-        <div class="mb-3 form-group">
+<!--        <div class="mb-3 form-group">
           <label for="job_title_box" class="col-sm-3 col-form-label">
             Job title
           </label>
 
-          <input type="text" id="job_title_box" name="query_job_title" value="<%= @the_interview.job_title%>">
+          <input type="text" id="job_title_box" name="query_job_title" value="<%#= @the_interview.job_title%>">
         </div>
 
         <div class="mb-3 form-group">
@@ -70,7 +64,7 @@
             Employer
           </label>
 
-          <input type="text" id="employer_box" name="query_employer" value="<%= @the_interview.employer%>">
+          <input type="text" id="employer_box" name="query_employer" value="<%#= @the_interview.employer%>">
         </div>
 
 
@@ -81,9 +75,9 @@
 
           <textarea type="text" class="form-control" id="responsibilities_box" name="query_responsibilities"
             rows="3">
-                 <%= @the_interview.responsibilities %>
-            </textarea>
-        </div>
+                 <%#= @the_interview.responsibilities %>-->
+<!--            </textarea>
+        </div>-->
 
         <div class="mb-3 form-group">
         <label for="type_box" class="col-sm-3 col-form-label">Interview Type</label>

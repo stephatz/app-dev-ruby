@@ -10,16 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_03_212708) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_06_054957) do
   create_table "interviews", force: :cascade do |t|
-    t.string "job_title"
-    t.integer "user_id"
-    t.string "responsibilities"
     t.date "date"
-    t.string "employer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "interview_type"
+    t.integer "job_id"
+    t.index ["job_id"], name: "index_interviews_on_job_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "job_title"
+    t.text "responsibilities"
+    t.string "employer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -43,4 +51,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_212708) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "interviews", "jobs"
+  add_foreign_key "jobs", "users"
 end

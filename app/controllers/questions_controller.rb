@@ -52,6 +52,6 @@ class QuestionsController < ApplicationController
 
     the_question.destroy
 
-    redirect_to("/questions", { :notice => "Question deleted successfully."} )
+    redirect_to("/interviews/#{the_question.interview_id}", { :notice => "Question deleted successfully."} )
   end
 end
