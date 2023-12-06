@@ -1,8 +1,7 @@
 class JobsController < ApplicationController
   def index
-    matching_jobs = Job.all
+    matching_jobs = current_user.jobs
 
-    
     @list_of_jobs = matching_jobs.order({ :created_at => :desc })
 
     render({ :template => "jobs/index" })

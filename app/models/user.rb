@@ -19,7 +19,9 @@
 #
 class User < ApplicationRecord
   validates(:email, uniqueness: true)
-  has_many  :interviews, class_name: "Interview", foreign_key: "user_id", dependent: :destroy
+  has_many :jobs
+  has_many :interviews, through: :jobs
+  has_many :questions, through: :interviews
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

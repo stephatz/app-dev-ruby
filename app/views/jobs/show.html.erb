@@ -129,12 +129,12 @@
 
       </tr>
 
-      <% @the_interviews.each do |an_interview| %>
+      <% @the_interviews.each_with_index do |an_interview, i| %>
       <tr>
 
         <td>
           <a href="/interviews/<%= an_interview.id %>">
-            <%= an_interview.id%>
+            <%= i + 1%>
           </a>
         </td>
 

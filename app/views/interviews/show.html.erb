@@ -139,12 +139,12 @@
 
       </tr>
 
-      <% @the_questions.each do |a_question| %>
+      <% @the_questions.each_with_index do |a_question, i| %>
       <tr>
 
         <td>
           <a href="/questions/<%= a_question.id %>">
-            <%= a_question.id%>
+            <%= i + 1%>
           </a>
         </td>
 

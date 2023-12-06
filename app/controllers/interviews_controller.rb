@@ -1,7 +1,7 @@
 class InterviewsController < ApplicationController
   def index
-    matching_interviews = Interview.all
-
+    matching_interviews = current_user.interviews
+    
     
     @list_of_interviews = matching_interviews.order({ :created_at => :desc })
 
